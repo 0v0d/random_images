@@ -7,14 +7,14 @@ import 'api_client.dart';
 
 part 'github_repo_date_source.g.dart';
 
-final githubRepoDateSourceProvider =
-    Provider((ref) => GithubRepoDateSource(ref));
+final githubRepoDataSourceProvider =
+Provider((ref) => GithubRepoDataSource(ref));
 
 @RestApi()
-abstract class GithubRepoDateSource {
-  factory GithubRepoDateSource(Ref ref) =>
-      _GithubRepoDateSource(ref.read(dioProvider));
+abstract class GithubRepoDataSource {
+  factory GithubRepoDataSource(Ref ref) =>
+      _GithubRepoDataSource(ref.read(dioProvider));
 
   @GET('search/repositories')
-  Future<List<GithubRepo>> getRepos(@Query('q') String query);
+  Future<GithubSearchResponse> getRepos(@Query('q') String query);
 }
